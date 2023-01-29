@@ -1,8 +1,10 @@
 .container{
-    border: 1px solid blue;
+   
     display: flex;
     flex-direction: row;
     border-radius: 15px;
     flex-wrap: wrap;
-    gap: 1em
+    gap: 1em;
+    background-color: black;
+    color:aqua
 }

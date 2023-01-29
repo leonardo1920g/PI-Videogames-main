@@ -1,0 +1,23 @@
+.landing { 
+          
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../../image/img_landing.jpg");    
+    background-size: 100%;
+    display: flex;
+    align-items:center;
+    justify-content: center; 
+}
+
+.button{
+    position: relative;
+    border-style: none;
+    border-radius: 4px;
+    padding: 20px 10px;
+    font-weight: bold;
+    background-color: greenyellow;
+    color: white;
+    border: 1px solid greenyellow;
+    margin: 10px;
+    box-shadow: 1px 1px 20px 8px greenyellow; 
+}
