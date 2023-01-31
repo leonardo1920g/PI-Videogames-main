@@ -1,0 +1,12 @@
+.home{
+    background: black;    
+    
+}
+
+.title{
+    color: aqua;
+    font-family: sans-serif;
+    margin: 0;
+    font-size: 100mx;
+    text-shadow: 0 0 5px turquoise, 0 0 15px turquoise, 0 0 30px turquoise;
+}

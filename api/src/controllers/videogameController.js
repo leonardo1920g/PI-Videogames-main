@@ -21,8 +21,8 @@ const cleanArray = (arr) =>
 });
   
 const createVideogame = async (
-    name, description,  released, rating, platforms) => {    
-    return await Videogame.create({ name, description,  released, rating, platforms }); 
+    name, description,  released, rating, platforms,image) => {    
+    return await Videogame.create({ name, description,  released, rating, platforms, image }); 
 };
 
 const getVideogameById = async (id, source) => { // incluir los generos asociados

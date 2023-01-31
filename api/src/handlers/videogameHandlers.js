@@ -26,10 +26,10 @@ const getVideogameHandler = async (req, res) => {
 };
 
 const createVideogameHandler = async (req, res) => {        
-    const { name, description, released, rating, platforms } = req.body;
+    const { name, description, released, rating, platforms, image } = req.body;
 
     try {
-        const newVideogame = await createVideogame(name, description,  released, rating, platforms);
+        const newVideogame = await createVideogame(name, description,  released, rating, platforms, image);
                
         res.status(201).json({data: newVideogame, message: "VIDEO GAME CREATED SUCCESSFULLY"});
     }   catch (error) {

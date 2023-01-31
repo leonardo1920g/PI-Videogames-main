@@ -11,9 +11,10 @@ const CardsContainer = () => {
             {videogames.map(game=>{
                 return <Card 
                     id = {game.id}
-                    name = {game.name}
-                    rating = {game.rating}
                     image = {game.image}
+                    name = {game.name}
+                    genre = {game.genres}
+                    
                 />
             })}
         </div>

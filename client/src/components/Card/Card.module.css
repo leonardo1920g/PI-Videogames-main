@@ -1,6 +1,16 @@
 .card {
-    border: 1px solid green;
-    width: fit-content;
-    height: fit-content;
+    border: 1px solid turquoise;
+    width: 250px;
+    height: 250px;
     border-radius: 10px;
+    justify-content: center;
+    align-items:center;
+    
+}
+
+.imgContainer{
+    background-color: white;
+    border-radius: 10px;
+    width: 200px;
+    height: 100px;
 }

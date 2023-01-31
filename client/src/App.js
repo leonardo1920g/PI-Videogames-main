@@ -11,11 +11,13 @@ function App() {
     <div className="App">
       {location.pathname !== "/" && <NavBar />}
       <Route exact path = "/" component={Landing} />
-      <Route path="/home" render={() => <Home />}/> 
-      <Route exact path = "/detail" component={Detail} />
+      <Route path ="/home" render={() => <Home />} /> 
+      <Route exact path = "/detail/:id" render={(match) => <Detail match={match}/>} />
       <Route exact path = "/create" component={Form} />               
     </div>
   );
-}
+};
+
+
 
 export default App;

@@ -6,20 +6,10 @@ import styles from "./Landing.module.css"
 
 const Landing = () => {
 
-    // const dispatch = useDispatch()
-    
-    // useEffect(()=> 
-    // dispatch(),
-    // [])
-
-    // useEffect(()=> 
-    // dispatch(),
-    // [])
-
     return (
         <div className={styles.landing}>
-            <Link to={`/videogames`}>
-                <button className={styles.button}>PLAY</button>
+            <Link to={`/home`}>
+                <button className={styles.button}>ENTER</button>
             </Link>            
         </div>
     )
