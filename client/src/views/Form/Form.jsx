@@ -1,15 +1,34 @@
 import React, { useState, useEffect} from "react";
-import axios from "axios";
 import style from "../Form/Form.module.css"
 import {useDispatch, useSelector, } from "react-redux"
-import { getGenres } from "../../Redux/actions";
-import { Link } from "react-router-dom";
+import { addVideogame, getGenres } from "../../Redux/actions";
+import { Link, useHistory } from "react-router-dom";
 
+// va a validar cada valor que se ingresa
+
+const validate = (form) => {
+
+    let errors = {};
+
+    if(!form.name){
+        errors.name = "A name is required of videogame";
+    } else if (!form.description){
+        errors.description = "Write a description of the game";
+    }
+        
+    // if(form.name){
+    //     setErrors({...errors,name:"Ok"})
+    // } else {
+    //     setErrors({...errors,name:"Please enter a name"});
+    // }
+};
 
 const Form = () => {  
     
     const dispatch = useDispatch();
+    const history = useHistory() // es un hook que me lleva a la direccion indicada cuando se termine la tarea
     const genres = useSelector((state) => state.genres)
+    const [errors, setErrors] = useState({});
 
     // es la funcion que define el estado 
     const [form,setForm ] = useState ({
@@ -23,18 +42,45 @@ const Form = () => {
         image:"",
     });
 
+    //de la misma manera crear useEffect de platforms
+
     useEffect(()=>{
         dispatch(getGenres())
     },[dispatch])
+
+    //permite modificar el estado con lo nuevos valores
 
     const changeHandler = (event) => {
         const property = event.target.name;
         const value = event.target.value;
 
-        validate({...form, [property]:value})
-
         setForm({...form, [property]:value})        
     }
+
+    //esta funcion me permite seleccionar los valores de genres**** crear esta misma funcion para plataform
+    const handleSelect = (event) => {
+        setForm({
+            ...form, 
+            genres: [...form.genres, event.target.value]
+        });
+    };
+
+    const submitHandler = (event) => {
+        event.preventDefault();
+        //console.log(form); ***para verificar lo que se esta ingresando en el estado***
+        dispatch(addVideogame(form))
+        alert("VIDEO GAME CREATED!")
+        setForm({
+            name:"",
+            description:"",
+            released:"",
+            rating:"",
+            platforms:[],
+            genres:[],
+            image:"",
+        })
+        history.push("/home"); // cuando termine de crear regresamos a home
+    };
 
     // VALIDADOR: vamos a validar el estado que cambio
 
@@ -47,44 +93,25 @@ const Form = () => {
         platforms:"",
         genres:"",
         image:"",
-    });
+    });    
 
-    // me permita cambiar el estado
-
-    const validate = (form) => {
-        
-        if(form.name){
-            setErrors({...errors,name:"Ok"})
-        } else {
-            setErrors({...errors,name:"Please enter a name"});
-        }
-    };
-
-    const handleSelect = (e) => {
-        setForm({
-            ...form, 
-            genres: [...form.genres, e.target.value]
-        });
-    };
-
-    const submitHandler = (event) => {
-        event.preventDefault();
-        axios.post("http://localhost:3001/Videogame",form)
-        .then(res=>alert(res))
-        .catch(err=>alert(err))
-    };
-
-    const handlerDelet = (el) => {
-        if (form.genre.length === 0) return;
     
-        const index = form.genre.indexOf(el);
-        if (index === -1) return;
+
+   
+
     
-        setForm({
-            ...form,
-            genre: [...form.genre.slice(0, index), ...form.genre.slice(index + 1)],
-        });
-    };
+
+    // const handlerDelet = (el) => {
+    //     if (form.genre.length === 0) return;
+    
+    //     const index = form.genre.indexOf(el);
+    //     if (index === -1) return;
+    
+    //     setForm({
+    //         ...form,
+    //         genre: [...form.genre.slice(0, index), ...form.genre.slice(index + 1)],
+    //     });
+    // };
     
 
     return (
@@ -143,7 +170,6 @@ const Form = () => {
 
             <div>
                 <label className= {style.text}>Platforms: </label>
-                {/* <input type="text" value={form.platforms} onChange={changeHandler} name="platforms" /> */}
                 <select 
                 type="text" 
                 value={form.platforms} 
@@ -166,19 +192,21 @@ const Form = () => {
                     <option value="New Nintendo 3DS XL">New Nintendo 3DS XL</option>
                 </select>                
             </div>
-
             <div>
-                <label className= {style.text}>Genres: </label>              
-                <select 
-                onChange={(e) => handleSelect(e)}>
-                    {genres.map((gen) => (
+                <label className= {style.text}>Genres: </label>
+                <select
+                onChange={(event) => handleSelect(event)}
+                name ="genres">
+                    {genres.map((gen)=>(
                         <option value={gen.name}>{gen.name}</option>
                     ))}
-                </select> 
-                    <ul>
-                        <li>{form.genres.map(el => el + " ,")}</li>
-                    </ul>               
-            </div>   
+                </select>
+                <ul>
+                    <li>{form.genres.map(elem => elem + " -")}</li>
+                </ul>
+            </div>
+
+            
 {/*                 
                 {form.genre.map(el=>
                 <div>
@@ -189,25 +217,17 @@ const Form = () => {
                     handlerDelet(el)}>x</button>
                 </div>
                 )} */}
-                         
-
             <div>
                 <label className= {style.text}>Image:</label>
-                <form 
-                    name="subida-imagenes" 
-                    type="POST" 
-                    enctype="multipart/formdata" 
-                    className= {style.text}>
-	                <input 
+                <input
                     type="file" 
-                    name="image" 
-                    className= {style.button}/>
-                </form>
-            </div>
-
-            <button 
-            type="submit"
-            className= {style.button}>CREATE VIDEOGAME</button>
+                    value={form.image}
+                    onChange={changeHandler}
+                    name="image"
+                    className= {style.text}/>       
+            </div>      
+                          
+            <button type="submit" className= {style.button}>CREATE VIDEOGAME</button>
 
         </form>
 

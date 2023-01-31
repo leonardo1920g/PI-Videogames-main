@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getVideogames } from "../../Redux/actions";
 import style from "./Home.module.css";
+import SearchBar from "../../components/SearchBar/SearchBar";
 
 const Home = () => {
 
@@ -16,6 +17,7 @@ const Home = () => {
             <div>
             
              {/* vamos a hacer los ordenamientos de los videojuegos */}
+                <SearchBar/>
                 <select>
                     <option value="asc" >ASCENDING</option>
                     <option value="dec" >DECENDING</option>

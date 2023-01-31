@@ -31,36 +31,3 @@ const getGenresHandler = async(req, res, next) => {
 };
 
 module.exports = { getGenresHandler };
-
-// const cleanArray = (arr) =>
-//     arr.map((elem) => {
-   
-//     return {
-    
-//         name: elem.name,
-        
-//     }
-// });
-// const getGenresController = async (req, res) => {
-   
-//   const consultaApiGenres = await axios
-//       .get((`https://api.rawg.io/api/genres?key=${API_KEY}`))
-//   const genres=response.data.results;
-
-//   console.log(genres);
-    
-//   const genresApi = cleanArray(genres);
-
-//   return [...genresApi]
-// };
-
-// const getGenresHandler = async (req, res) => {
-//   const { name } = req.params;
-    
-//   try {
-//       const genres = await getGenresController(name);
-//       res.status(200).json(genres);
-//   }   catch (error) {
-//       res.status(400).json({ error: error.message });
-//   }
-// };
