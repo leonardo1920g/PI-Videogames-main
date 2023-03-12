@@ -4,32 +4,13 @@ import {useDispatch, useSelector, } from "react-redux"
 import { addVideogame, getGenres } from "../../Redux/actions";
 import { Link, useHistory } from "react-router-dom";
 
-// va a validar cada valor que se ingresa
-
-const validate = (form) => {
-
-    let errors = {};
-
-    if(!form.name){
-        errors.name = "A name is required of videogame";
-    } else if (!form.description){
-        errors.description = "Write a description of the game";
-    }
-        
-    // if(form.name){
-    //     setErrors({...errors,name:"Ok"})
-    // } else {
-    //     setErrors({...errors,name:"Please enter a name"});
-    // }
-};
-
 const Form = () => {  
     
     const dispatch = useDispatch();
     const history = useHistory() // es un hook que me lleva a la direccion indicada cuando se termine la tarea
     const genres = useSelector((state) => state.genres)
-    const [errors, setErrors] = useState({});
-
+    // const videogames = useSelector((state) => state.videogames)
+    
     // es la funcion que define el estado 
     const [form,setForm ] = useState ({
 
@@ -48,13 +29,37 @@ const Form = () => {
         dispatch(getGenres())
     },[dispatch])
 
+    const [errors, setErrors] = useState({
+
+        name:"",
+        description:"",
+        released:"",
+        rating:"",
+        platforms:[],
+        genres:[],
+        image:"",
+    })
+
     //permite modificar el estado con lo nuevos valores
 
     const changeHandler = (event) => {
         const property = event.target.name;
         const value = event.target.value;
 
+        setErrors(validate({...form, [property]:value}));
         setForm({...form, [property]:value})        
+    };
+
+    const validate = (form) => {
+
+        let errors = {};
+
+        if (!form.name.trim()){
+            errors.name = "This feature is required.";            
+        } else if (!/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(form.name.trim())){
+            errors.name = "This feature must contain only letters.";            
+        }
+
     }
 
     //esta funcion me permite seleccionar los valores de genres**** crear esta misma funcion para plataform
@@ -80,39 +85,7 @@ const Form = () => {
             image:"",
         })
         history.push("/home"); // cuando termine de crear regresamos a home
-    };
-
-    // VALIDADOR: vamos a validar el estado que cambio
-
-    const [errors,setErrors] = useState ({
-
-        name:"",
-        description:"",
-        released:"",
-        rating:"",
-        platforms:"",
-        genres:"",
-        image:"",
-    });    
-
-    
-
-   
-
-    
-
-    // const handlerDelet = (el) => {
-    //     if (form.genre.length === 0) return;
-    
-    //     const index = form.genre.indexOf(el);
-    //     if (index === -1) return;
-    
-    //     setForm({
-    //         ...form,
-    //         genre: [...form.genre.slice(0, index), ...form.genre.slice(index + 1)],
-    //     });
-    // };
-    
+    };    
 
     return (
 

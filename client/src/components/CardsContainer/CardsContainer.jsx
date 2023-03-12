@@ -4,19 +4,27 @@ import { useSelector } from "react-redux";
 
 const CardsContainer = () => {
     
-    const videogames = useSelector(state=>state.videogames)
+    const videogames = useSelector((state) => state.videogames);
+    // const genres = useSelector((state) => state.genres);
 
     return (
-        <div className={style.container}>
-            {videogames.map(game=>{
-                return <Card 
-                    id = {game.id}
-                    image = {game.image}
-                    name = {game.name}
-                    genre = {game.genres}
+
+        <div className={style.elements}>
+            
+            <div className={style.container}>
+                {videogames.map(game =>{
+                    return (<Card 
+                        key = {game.id}
+                        id = {game.id}
+                        image = {game.image}
+                        name = {game.name}
+                        genres = {game.genres}
                     
-                />
-            })}
+                    />
+                    )
+                })
+                }
+            </div>
         </div>
     )
 };

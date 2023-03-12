@@ -1,5 +1,4 @@
 require('dotenv').config();
-const { API_KEY } = process.env;
 const { Genre } = require("../db")
 const axios = require("axios");
 
@@ -14,7 +13,7 @@ const getGenresHandler = async(req, res, next) => {
 
     if (dbClear.length) return res.send(dbClear)
 
-    const response = await axios.get((`https://api.rawg.io/api/genres?key=${API_KEY}`))
+    const response = await axios.get((`https://api.rawg.io/api/genres?key=cefc117d21ce4e8798553f945b2fe1bd`))
     const genres = response.data.results;
 
     for(const genre of genres){

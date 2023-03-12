@@ -1,12 +1,15 @@
 .home{
-    background: black;    
+    position: absolute;
+    background: black;   
+    width: 100%; 
+    background-size: cover; 
+    height: 130vh; 
     
 }
 
 .title{
     color: aqua;
-    font-family: sans-serif;
-    margin: 0;
-    font-size: 100mx;
-    text-shadow: 0 0 5px turquoise, 0 0 15px turquoise, 0 0 30px turquoise;
+    font-size: 50px;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }

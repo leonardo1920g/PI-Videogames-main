@@ -1,10 +1,17 @@
+.elements{
+    width: 100%; /*define que cantidad de la vista se va usar*/
+    background: transparent;
+}
+
 .container{
-   
+    width: 100%;
     display: flex;
+    justify-content: center;
     flex-direction: row;
     border-radius: 15px;
     flex-wrap: wrap;
-    gap: 1em;
-    background-color: black;
-    color:aqua
+    gap: 20px;
+    margin-top: 30px;
+    padding-bottom: 30px;
+    
 }

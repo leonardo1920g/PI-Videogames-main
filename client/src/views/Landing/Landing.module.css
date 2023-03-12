@@ -2,17 +2,17 @@
           
     width: 100vw;
     height: 100vh;
-    background-image: url("../../image/img_landing.jpg");    
+    background-image: url("../../image/img_landing.jpg"); 
+    background-attachment:fixed;   
     background-size: 100%;
-    display: flex;
-    align-items:center;
-    justify-content: center; 
+    display: grid;
+    place-items: center; 
 }
 
 .button{
     position: relative;
     border-style: none;
-    border-radius: 4px;
+    border-radius: 5px;
     padding: 15px 30px;
     font-weight: bold;
     background-color: rgb(13, 201, 13);
@@ -21,3 +21,5 @@
     margin: 10px;
     box-shadow: 1px 1px 20px 8px rgb(13, 201, 13); 
 }
+
+

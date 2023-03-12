@@ -1,22 +1,17 @@
 import style from "./Card.module.css";
-import {Link} from "react-router-dom"
+// import {Link} from "react-router-dom"
 
 const Card = (props) => {
+
     return (
         <div className={style.card}>
             <div className={style.imgContainer}>
-                <img 
-                className={style.image} 
-                src = {props.image} 
-                alt="img not found" 
-                width="200px"
-                height="100px"/>
+                <img className={style.image} src = {props.image}alt="img not found" width="180px"height="180px"/>
             </div> 
+
             <div>  
-                <Link to={`/detail/${props.id}`}>
-                <h3>{props.name}</h3>
-                </Link>
-                <p>Genres:{props.genres}</p>
+                <h1 className={style.name}>{props.name}</h1>
+                <h3 className={style.genres}>Genres:{props.genres}</h3>
             </div>
             
             
@@ -24,4 +19,4 @@ const Card = (props) => {
     )
 }
 
-export default Card
+export default Card;
